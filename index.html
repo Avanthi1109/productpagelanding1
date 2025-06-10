@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Landing Page - Elegant Component Library</title>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* CSS Custom Properties for theme */
+    :root {
+      --color-bg: #ffffff;
+      --color-text-primary: #111827;
+      --color-text-secondary: #6b7280;
+      --color-accent: #000000;
+      --color-accent-hover: #222222;
+      --color-card-bg: #f9fafb;
+      --color-shadow: rgba(0, 0, 0, 0.05);
+
+      --font-heading: 'Inter', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --radius-card: 0.75rem;
+      --padding-section-vertical: 4rem;
+      --container-max-width: 1200px;
+      --transition-speed: 0.3s;
+    }
+
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus,
+    button:focus {
+      outline-offset: 3px;
+      outline: 2px solid var(--color-accent);
+      outline-radius: 4px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--container-max-width);
+      padding: 0 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 5px var(--color-shadow);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 1rem 1rem;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      user-select: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color var(--transition-speed);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition-speed);
+      border-radius: 1px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--color-accent);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: var(--padding-section-vertical);
+      padding-bottom: var(--padding-section-vertical);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      color: var(--color-accent);
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      margin: 0 0 2rem;
+      max-width: 480px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      font-size: 1.125rem;
+      border: none;
+      border-radius: var(--radius-card);
+      cursor: pointer;
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+      box-shadow: 0 4px 14px rgb(0 0 0 / 0.2);
+      user-select: none;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: var(--color-accent-hover);
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgb(0 0 0 / 0.3);
+      outline: none;
+    }
+
+    .hero-image-container {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: var(--radius-card);
+      box-shadow: 0 10px 30px var(--color-shadow);
+      background: #f0f0f0;
+    }
+    .hero-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transition: transform var(--transition-speed);
+      will-change: transform;
+    }
+    .hero-image-container:hover img,
+    .hero-image-container:focus-within img {
+      transform: scale(1.05);
+    }
+
+    /* Features Section */
+    .features {
+      padding-top: var(--padding-section-vertical);
+      padding-bottom: var(--padding-section-vertical);
+      background: #fafafa;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      background: var(--color-bg);
+      border-radius: var(--radius-card);
+      padding: 2rem 1.5rem 2.5rem;
+      box-shadow: 0 2px 8px var(--color-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+      cursor: default;
+    }
+    .feature-card:hover,
+    .feature-card:focus-within {
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.125rem;
+      stroke: var(--color-accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-accent);
+      margin: 0 0 0.5rem;
+    }
+
+    .feature-desc {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      line-height: 1.4;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      border-top: 1px solid #e5e7eb;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content p {
+        max-width: 100%;
+      }
+      .hero-image-container {
+        margin: 1.5rem auto 0;
+        max-width: 80vw;
+      }
+      .nav-links {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <nav class="container" role="navigation" aria-label="Primary Navigation">
+      <div class="logo" tabindex="0">CompLib</div>
+      <div class="nav-links">
+        <a href="#features" tabindex="0">Features</a>
+        <a href="#get-started" tabindex="0">Get Started</a>
+        <a href="#about" tabindex="0">About</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero container" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <h1 id="hero-heading">Build your Component Library</h1>
+        <p>Create beautiful, reusable UI components designed for modern web development.</p>
+        <button class="btn-primary" id="get-started">Get Started</button>
+      </div>
+      <div class="hero-image-container" tabindex="0" aria-label="Illustration of UI components in design software">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Illustration showing UI component designs on screen" />
+      </div>
+    </section>
+    <section class="features container" id="features" aria-labelledby="features-heading">
+      <h2 id="features-heading" style="text-align:center; font-family: var(--font-heading); font-weight: 700; font-size: 2rem; margin-bottom: 3rem; color: var(--color-accent);">Features</h2>
+      <div class="features-grid">
+        <article class="feature-card" tabindex="0">
+          <svg class="feature-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 0"/></svg>
+          <h3 class="feature-title">Modular Components</h3>
+          <p class="feature-desc">Build flexible UI blocks that can be reused across projects to accelerate development.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <svg class="feature-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18"/></svg>
+          <h3 class="feature-title">Customizable Styles</h3>
+          <p class="feature-desc">Easily theme and style components with CSS variables and modern CSS techniques.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <svg class="feature-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3 class="feature-title">Accessible Design</h3>
+          <p class="feature-desc">Ensure your UI is usable by everyone with semantic HTML and ARIA support out of the box.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <svg class="feature-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor"><path d="M5 12h14"/></svg>
+          <h3 class="feature-title">Developer Friendly</h3>
+          <p class="feature-desc">Clean API and thorough documentation make integration and customization hassle-free.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 CompLib. All rights reserved.
+  </footer>
+</body>
+</html>
+
